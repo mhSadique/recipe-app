@@ -12,6 +12,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import RecipeFiltersScreen from '../screens/RecipeFiltersScreen';
 import DrawerIcon from '../components/DrawerIcon';
+import SaveIcon from '../components/SaveIcon';
 
 
 const Stack = createNativeStackNavigator();
@@ -140,6 +141,7 @@ const RecipesNavigator = () => {
                     component={RecipeFiltersScreen}
                     options={({ navigation }) => ({
                         headerLeft: () => <DrawerIcon navigation={navigation} screenName='Filter' />,
+
                         headerShown: true,
                         headerTintColor: 'white',
                         headerStyle: {

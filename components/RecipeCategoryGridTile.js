@@ -11,9 +11,9 @@ const RecipeCategoryGridTile = ({ title, onSelect, backgroundColor }) => {
     return (
         <View style={styles.gridItem}>
             <TouchableComponent
-                style={{ flex: 1 }}
+                style={{ flex: 1, height: '100%' }}
                 onPress={onSelect} >
-                <View style={{ ...styles.container, backgroundColor: backgroundColor }}>
+                <View style={{ ...styles.container, backgroundColor: backgroundColor, height: '100%' }}>
                     <Text style={styles.title} numberOfLines={2} >{title}</Text>
                 </View>
             </TouchableComponent>
