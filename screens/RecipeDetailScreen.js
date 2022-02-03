@@ -1,9 +1,10 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { RECIPES } from '../data/fakeData';
+import { useSelector } from 'react-redux';
 
 const RecipeDetailScreen = ({ route }) => {
-    const selectedRecipe = RECIPES.find(recipe => recipe.id === route.params.recipeId);
+    const recipes = useSelector(store => store.recipes.recipes);
+    const selectedRecipe = recipes.find(recipe => recipe.id === route.params.recipeId);
     return (
         <ScrollView>
             <Image

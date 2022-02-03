@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
 import RecipeItem from '../components/RecipeItem';
-import { CATEGORIES, RECIPES } from '../data/fakeData';
 
 const RecipeCategorySingleScreen = ({ navigation, route }) => {
 
     const categoryId = route.params.categoryId;
-    const RecipesToDisplay = RECIPES.filter(recipe => recipe.categoryIds.indexOf(categoryId) >= 0);
+    const recipes = useSelector(store => store.recipes.filteredRecipes);
+    const RecipesToDisplay = recipes.filter(recipe => recipe.categoryIds.indexOf(categoryId) >= 0);
 
     const renderRecipeItems = ({ item }) => {
         return <RecipeItem item={item} onSelectRecipe={() => {
@@ -26,13 +27,5 @@ const RecipeCategorySingleScreen = ({ navigation, route }) => {
         />
     );
 };
-
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});
 
 export default RecipeCategorySingleScreen;

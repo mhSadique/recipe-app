@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavourite } from '../store/actions/recipes';
 
-const FavouriteButton = ({ navigation }) => {
-    const [iconName, setIconName] = useState('ios-star-outline');
+const FavouriteButton = ({ recipeId }) => {
 
-    const handleAddToFavourite = () => {
-        if (iconName === 'ios-star-outline') {
-            setIconName('ios-star')
-        } else if (iconName === 'ios-star') {
-            setIconName('ios-star-outline');
-        }
-    };
+    const favouriteRecipes = useSelector(store => store.recipes.favouriteRecipes);
+    const currentRecipeIsFavourite = favouriteRecipes.some(recipe => recipe.id === recipeId);
+    const dispatch = useDispatch();
+    const toggleAddToFavourite = useCallback(() => {
+        dispatch(toggleFavourite(recipeId))
+    }, [dispatch, recipeId]);
 
     return (
-        <TouchableOpacity onPress={handleAddToFavourite}>
-            <Ionicons name={iconName} size={24} color="white" />
+        <TouchableOpacity onPress={toggleAddToFavourite}>
+            <Ionicons name={currentRecipeIsFavourite ? 'ios-star' : 'ios-star-outline'} size={24} color="white" />
         </TouchableOpacity>
     );
 };

@@ -55,7 +55,10 @@ const RecipeStack = () => (
             options={({ route }) => ({
                 headerTitle: route.params.title,
                 headerRight: () => (
-                    <FavouriteButton />
+                    <FavouriteButton
+                        recipeId={route.params.recipeId}
+                        isFavourite={route.params.isFavourite}
+                    />
                 )
             })}
         />

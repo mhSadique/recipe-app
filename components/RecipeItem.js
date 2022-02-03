@@ -4,8 +4,11 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react
 const RecipeItem = ({ item, onSelectRecipe }) => {
     return (
         <View style={styles.recipeItem}>
-            <TouchableOpacity onPress={onSelectRecipe} style={{ height: '100%' }}> {/* height added later */}
-                <View style={{ height: '100%' }}> {/* height added later */}
+            <TouchableOpacity
+                onPress={onSelectRecipe}
+                style={{ height: '100%' }}
+            >
+                <View style={{ height: '100%' }}>
                     <View style={styles.recipeHeader}>
                         <ImageBackground
                             source={{ uri: item.imageUrl }}

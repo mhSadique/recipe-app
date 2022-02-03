@@ -6,6 +6,9 @@ import AppLoading from 'expo-app-loading';
 import { useEffect, useState } from 'react';
 import RecipesNavigator from './navigation/RecipesNavigator';
 import Loader from './components/Loader';
+import { combineReducers, createStore } from 'redux';
+import recipesReducer from './store/reducers/recipes';
+import { Provider } from 'react-redux';
 
 // const fetchFonts = async () => {
 //   return await Font.loadAsync({
@@ -13,6 +16,12 @@ import Loader from './components/Loader';
 //     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
 //   });
 // };
+
+const rootReducer = combineReducers({
+  recipes: recipesReducer
+});
+
+const store = createStore(rootReducer);
 
 export default function App() {
 
@@ -26,6 +35,8 @@ export default function App() {
   // }
 
   return (
-    <RecipesNavigator />
+    <Provider store={store}>
+      <RecipesNavigator />
+    </Provider>
   );
 }
